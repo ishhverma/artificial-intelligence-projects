@@ -1,103 +1,234 @@
-# Handwritten Digit Recognizer (MNIST)
+# artificial-intelligence-projects
 
-This repository contains a Jupyter Notebook (p1_Handwritten_Digit_Recognizer.ipynb) that trains and evaluates two models to recognize handwritten digits from the MNIST dataset:
+Collection of small, self-contained Jupyter/Colab notebooks and lightweight scripts that demonstrate classic and deep-learning techniques across several tasks. This repository is intended as a set of reproducible learning examples you can run, extend, and adapt.
 
-- A fully-connected Multi-Layer Perceptron (MLP)
-- A Convolutional Neural Network (CNN)
+Permalink (this commit):
+https://github.com/ishhverma/artificial-intelligence-projects/blob/9ae4d50cf97cfa2a54af5350367ac26b66abcf23/
 
-The notebook also includes a small Streamlit demo script to load the trained CNN and run predictions on uploaded images.
+Included projects / notebooks
+- p1_Handwritten_Digit_Recognizer.ipynb — Handwritten Digit Recognition (MNIST) using MLP and CNN  
+  https://github.com/ishhverma/artificial-intelligence-projects/blob/9ae4d50cf97cfa2a54af5350367ac26b66abcf23/p1_Handwritten_Digit_Recognizer.ipynb
+- p2_Customer_Service_Chatbot.ipynb — FAQ-style customer service chatbot (NLTK + TF-IDF + cosine similarity)  
+  https://github.com/ishhverma/artificial-intelligence-projects/blob/9ae4d50cf97cfa2a54af5350367ac26b66abcf23/p2_Customer_Service_Chatbot.ipynb
+- p3_weather_forecasting.ipynb — Weather forecasting with LSTM (Meteostat data + feature engineering + LSTM)  
+  https://github.com/ishhverma/artificial-intelligence-projects/blob/9ae4d50cf97cfa2a54af5350367ac26b66abcf23/p3_weather_forecasting.ipynb
+- stockmarket_predict_p4.ipynb + train.py — Stock Market Prediction (Nifty50) — notebook experiments and a reproducible training script  
+  https://github.com/ishhverma/artificial-intelligence-projects/blob/9ae4d50cf97cfa2a54af5350367ac26b66abcf23/stockmarket_predict_p4.ipynb
 
-Notebook (permalink):
-https://github.com/ishhverma/artificial-intelligence-projects/blob/df07bfbf3509da1c0659fdf6a7cf6adbf3065fbb/p1_Handwritten_Digit_Recognizer.ipynb
-
-## Contents
-
-- p1_Handwritten_Digit_Recognizer.ipynb — the notebook that:
-  - Loads and visualizes the MNIST dataset
-  - Normalizes and reshapes data
-  - Trains an MLP on flattened images
-  - Trains a CNN on 28×28 grayscale images
-  - Compares test performance (loss & accuracy)
-  - Saves trained models (`mlp_model.keras` and `cnn_model.keras`)
-  - Contains a Streamlit app example for inference
-
-## Results (from the notebook)
-
-- MLP Test Loss: 0.0697  
-- MLP Test Accuracy: 0.9794
-
-- CNN Test Loss: 0.0259  
-- CNN Test Accuracy: 0.9927
-
-(Your exact results may vary depending on environment, package versions, and randomness.)
-
-## Requirements
-
-The notebook was developed with standard Python ML packages. Minimum / typical packages:
-
-- Python 3.8+
-- tensorflow (2.x)
-- numpy
-- matplotlib
-- pillow (PIL)
-- streamlit (only if you want to run the demo app)
-
-Install example (recommended in a venv):
-
-pip install tensorflow numpy matplotlib pillow streamlit
-
-Or, for CPU-only TensorFlow:
-
-pip install "tensorflow-cpu" numpy matplotlib pillow streamlit
-
-## How to run
-
-1. Open and run the notebook
-   - Option A — Google Colab: Click "Open in Colab" from the notebook header (link included in the notebook).
-   - Option B — Locally: Clone the repository, install dependencies, then open the notebook with JupyterLab/Notebook and run the cells in order.
-
-2. Train models
-   - The notebook trains both the MLP and CNN (each for 10 epochs in the example). Training outputs and final test metrics are printed in the notebook.
-
-3. Saved models
-   - After training, the notebook saves:
-     - `mlp_model.keras`
-     - `cnn_model.keras`
-   - Keep these files in the same directory as the Streamlit app if you want to run it locally.
-
-4. Run the Streamlit demo (optional)
-   - Save the Streamlit code from the notebook into a file called `app.py`.
-   - Ensure `cnn_model.keras` is present in the same directory.
-   - Run:
-     streamlit run app.py
-   - Open the URL shown by Streamlit in your browser and upload an image of a handwritten digit (jpg/png) to get a prediction and confidence.
-
-Notes about the demo:
-- The notebook includes a simple preprocessing routine: resize to 28×28, convert to grayscale, normalize to [0,1], and reshape to (1, 28, 28, 1).
-- The demo expects a single digit centered in the image for best results.
-
-## Tips & Caveats
-
-- Reproducibility: For exact reproducibility, set random seeds and fix package versions.
-- Running on GPU will speed up training. If you run on CPU, training will take longer.
-- The notebook uses a validation split (0.2) during training — adjust if you prefer different splits or use a dedicated validation set.
-- The notebook saves the entire model (including optimizer state). When loading only for inference, possible warnings about optimizer variable loading may appear; these can usually be ignored.
-
-## Suggested improvements
-
-- Add data augmentation (for robustness to rotations/translation).
-- Add command-line script to run inference on a folder of images.
-- Export the model to a lighter format (e.g., TensorFlow Lite) for mobile/edge deployment.
-- Add unit tests or small example images for the demo.
-
-## License & Contributions
-
-- License: add your preferred license (e.g., MIT) to the repository if you want to make it open-source.
-- Contributions: feel free to open issues or PRs in this repository to suggest improvements.
+Table of Contents
+- Overview
+- p1: Handwritten Digit Recognizer (MNIST)
+- p2: Customer Service Chatbot
+- p3: Weather Forecasting with LSTM
+- p4: Stock Market Prediction (Nifty50)
+- Combined requirements
+- How to run (Colab & locally)
+- Troubleshooting & notes
+- Suggested improvements & next steps
+- Contributing, license & contact
 
 ---
 
-I created a README.md that summarizes the notebook, lists requirements and run instructions, and highlights results and next steps. If you want, I can:
-- generate a requirements.txt,
-- extract the Streamlit script into a separate app.py file and add it to the repo,
-- or produce a short CONTRIBUTING.md template. Which should I do next?
+Overview
+This repository collects notebook-based experiments and a few scripts that show practical end-to-end workflows for learning and prototyping:
+- Image classification (MNIST) with MLP/CNN and a Streamlit demo snippet.
+- A classical NLP FAQ chatbot (NLTK + TF-IDF + cosine similarity).
+- Time-series forecasting with LSTM using Meteostat weather data.
+- A reproducible pipeline and experiments for stock market prediction (Nifty50) including tree-based models and neural networks.
+
+These notebooks are educational reference material and not production systems. Use them as starting points for experiments, teaching, or rapid prototyping.
+
+---
+
+p1. Handwritten Digit Recognizer (MNIST)
+
+What it contains
+- p1_Handwritten_Digit_Recognizer.ipynb
+  - Data loading (tf.keras.datasets.mnist)
+  - Preprocessing, visualization, normalization, and label encoding
+  - MLP and CNN model definitions, training, evaluation
+  - Saving models in Keras format
+  - Example Streamlit app snippet for image upload + prediction
+
+Notes
+- Typical example results: MLP test accuracy ~0.97–0.98, CNN ~0.99 (varies).
+- Saved artifacts (if you execute the notebook): mlp_model.keras, cnn_model.keras
+
+---
+
+p2. Customer Service Chatbot
+
+What it contains
+- p2_Customer_Service_Chatbot.ipynb
+  - Synthetic FAQ Q/A dataset and examples to expand it
+  - NLTK-based preprocessing (tokenize, lemmatize, stopword filtering)
+  - TF-IDF vectorization and cosine similarity intent matching
+  - Regex-based entity extraction (e.g., order IDs)
+  - Interactive loop example and example of saving objects with pickle
+
+Behavior
+- Preprocess and vectorize FAQ questions.
+- For each user query, compute cosine similarity to find the best-matching FAQ.
+- If similarity exceeds threshold, return an FAQ answer or an entity-aware response; otherwise prompt for clarification.
+
+Notes
+- Refit TF-IDF if you add or remove many questions.
+- Colab input() has limitations; interactive loops run best locally or via a UI.
+
+---
+
+p3. Weather Forecasting with LSTM
+
+What it contains
+- p3_weather_forecasting.ipynb
+  - Fetch daily weather data using Meteostat for a chosen location/date range
+  - EDA, feature engineering (temporal, lag, rolling), scaling
+  - Build look-back sequences and train an LSTM to predict next-day average temperature (tavg)
+  - Save/visualize training history and predictions
+
+Key steps
+- Create lag (1–3 days) and 7-day rolling features for selected columns
+- Drop NaNs after feature engineering (watch for accidental empty datasets)
+- Scale features with MinMaxScaler and build (samples, look_back, n_features) arrays for LSTM
+
+Notes
+- Ensure Meteostat returns non-empty data for chosen coordinates and date range.
+- Consider imputation instead of aggressive dropna to retain more samples.
+
+---
+
+p4. Stock Market Prediction (Nifty50)
+
+What it contains
+- stockmarket_predict_p4.ipynb — exploratory notebook with multiple model experiments (feature engineering, model comparisons including XGBoost, LightGBM, RandomForest, LSTM/GRU/CNN examples)
+- train.py — reproducible script for the main pipeline: download Nifty50 historical data, engineer features, chronologically split, scale, and train LightGBM/XGBoost models (focus on reproducibility)
+- requirements.txt — Python dependency list (if present)
+- .gitignore and LICENSE (MIT)
+
+Quickstart (script)
+1. Create and activate a Python environment (python >= 3.8).
+2. Install dependencies:
+   pip install -r requirements.txt
+3. Run:
+   python train.py
+
+Notes
+- The notebook includes experiments with neural models; train.py focuses on a reproducible data pipeline and tree-based models (faster to run / reproduce).
+- The script produces evaluation metrics and saved model artifacts (depending on implementation details in the notebook/script).
+
+---
+
+Combined requirements
+
+Recommended Python: 3.8+
+
+Common packages used across notebooks:
+- numpy
+- pandas
+- matplotlib
+- seaborn
+- pillow (PIL)
+- nltk
+- scikit-learn
+- tensorflow (tf.keras)
+- meteostat (p3)
+- xgboost, lightgbm (p4)
+- streamlit (optional; p1 demo)
+- pickle (builtin)
+
+Install example:
+```bash
+pip install numpy pandas matplotlib seaborn pillow nltk scikit-learn tensorflow meteostat xgboost lightgbm streamlit
+```
+
+NLTK resource downloads (used by p2):
+```python
+import nltk
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('stopwords')
+```
+
+---
+
+How to run
+
+Google Colab (recommended for convenience/GPU)
+- Open the target notebook in Colab using the GitHub → Open in Colab integration or the permalinks above.
+- For MNIST training or LSTM training, enable GPU: Runtime → Change runtime type → GPU.
+- Run cells top-to-bottom. Notebooks include pip/nltk install/download cells where needed.
+
+Locally
+1. Clone the repo:
+   git clone https://github.com/ishhverma/artificial-intelligence-projects.git
+   cd artificial-intelligence-projects
+2. Create and activate a virtual environment, then install dependencies (see requirements.txt if present).
+3. Open notebooks with Jupyter or run scripts (e.g., python train.py for p4).
+
+Streamlit (MNIST demo)
+- Save the example app code from p1 as app.py and ensure saved model file (cnn_model.keras) is present, then:
+  streamlit run app.py
+
+---
+
+Troubleshooting & notes
+
+NLTK LookupError
+- If you see LookupError (e.g., punkt not found), run nltk.download('punkt') and restart the kernel.
+- The chatbot notebook includes an extra `nltk.download('punkt_tab')` used to address an environment-specific issue in one run; typically `punkt` is enough.
+
+TF-IDF / Chatbot
+- After expanding the FAQ dataset, re-fit TfidfVectorizer and consider adjusting similarity_threshold (0.4–0.6).
+
+Meteostat / Weather Notebook
+- Ensure the location coordinates and date range yield data. If feature engineering + dropna empties the DataFrame, re-check fetched data.
+
+Stock model reproducibility
+- train.py focuses on deterministic preprocessing and training for reproducibility; check requirements for version pinning if exact results are needed.
+
+TensorFlow / GPU
+- Locally, ensure TensorFlow and CUDA/cuDNN versions are compatible for GPU training.
+
+Pickle security
+- Only unpickle files you trust; pickle can execute arbitrary code.
+
+---
+
+Suggested improvements & next steps
+- Add a repository-level requirements.txt with pinned versions and a LICENSE if desired (MIT recommended).
+- Add example saved models under an artifacts/ or models/ directory (e.g., cnn_model.keras, mlp_model.keras).
+- Convert frequently-run notebook workflows into standalone scripts or modules and add CLI entrypoints.
+- Replace TF-IDF in p2 with semantic embeddings (sentence-transformers) for better paraphrase handling.
+- Add spaCy or a dedicated NER model for richer entity extraction in the chatbot.
+- Improve p3 by adding imputation strategies, hyperparameter tuning (KerasTuner), and multi-step forecasts.
+- Expand p4 with backtesting, more robust feature sets, walk-forward validation, and experiment tracking (MLflow or TensorBoard).
+- Add CI (nbval) to ensure notebooks run without errors and unit tests for preprocessing functions.
+
+---
+
+Contributing
+- Open issues or PRs to:
+  - Add requirements.txt and a LICENSE file
+  - Move datasets into a `data/` directory
+  - Add tests and CI
+  - Add Dockerfiles for Streamlit demos and reproducible environments
+  - Convert notebooks into modular scripts for easier reuse
+
+If you want, I can:
+- open a PR adding this README.md,
+- add a requirements.txt with pinned versions,
+- add a sample Streamlit app file for MNIST,
+- or convert p2 into a small Streamlit/Flask app.
+
+---
+
+License & Author
+Author: ishhverma  
+Repository: https://github.com/ishhverma/artificial-intelligence-projects
+
+Consider adding an explicit LICENSE file (MIT recommended) if you plan to publish this repository as open source.
+
+Acknowledgements
+- NLTK, scikit-learn, TensorFlow/Keras, Meteostat, XGBoost, LightGBM, Streamlit, and many open-source contributors.
+
+Enjoy exploring and extending these notebooks!
