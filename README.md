@@ -194,18 +194,6 @@ Pickle security
 
 ---
 
-Suggested improvements & next steps
-- Add a repository-level requirements.txt with pinned versions and a LICENSE if desired (MIT recommended).
-- Add example saved models under an artifacts/ or models/ directory (e.g., cnn_model.keras, mlp_model.keras).
-- Convert frequently-run notebook workflows into standalone scripts or modules and add CLI entrypoints.
-- Replace TF-IDF in p2 with semantic embeddings (sentence-transformers) for better paraphrase handling.
-- Add spaCy or a dedicated NER model for richer entity extraction in the chatbot.
-- Improve p3 by adding imputation strategies, hyperparameter tuning (KerasTuner), and multi-step forecasts.
-- Expand p4 with backtesting, more robust feature sets, walk-forward validation, and experiment tracking (MLflow or TensorBoard).
-- Add CI (nbval) to ensure notebooks run without errors and unit tests for preprocessing functions.
-
----
-
 Contributing
 - Open issues or PRs to:
   - Add requirements.txt and a LICENSE file
